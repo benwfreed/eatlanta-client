@@ -1,0 +1,17 @@
+<h1 class="bevan article-title text-center">{{(article$ | async)?.meta?.title}}</h1>
+
+<p class="font-italic description">{{(article$ | async)?.meta?.description}}</p>
+
+<hr>
+
+<span class="font-weight-bold location">{{(article$ | async)?.meta?.location}}</span>
+
+<hr>
+
+<span>By</span>&nbsp;<span class="author">{{(article$ | async)?.meta?.author}}</span>
+
+<hr>
+
+<div class="ebgaramond row">
+  <div class="col-md-9 main-text" [innerHtml]="(article$ | async)?.content"></div>
+</div>
