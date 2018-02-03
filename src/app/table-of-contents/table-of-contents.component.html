@@ -1,0 +1,19 @@
+<h2 class="title oswald font-italic m-4">eatlanta</h2>
+
+<div *ngFor="let article of (articles$ | async)?.articles; trackBy: trackByArticle; let i = index;
+  let even=even"
+  class="card article flex" (click)="navigate(article?.meta?.id)">
+  <div class="row card-block">
+    <div class="col-md-6 offset-md-0 offset-sm-3 offset-2">
+      <h4 class="card-title bevan article-title">{{article?.meta?.title}}</h4>
+      <span class='oswald'>{{article?.meta?.description}}</span><br>
+      <span>{{article?.meta?.author}}</span><br>
+      <span>{{article?.meta?.location}}</span><br>
+    </div>
+    <!-- alternate image and text of each listed article for md and up -->
+    <div class="col-md-6 offset-md-0 offset-sm-3 offset-2
+      flex-md-{{even ? 'first' : 'last'}}">
+      Image Placeholder
+    </div>
+  </div>
+</div>

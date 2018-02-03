@@ -1,0 +1,25 @@
+// We need to import the the grid file to get access to the
+// media breakpoint mixin below.
+@import "../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
+
+.article {
+  /* For larger screens (i.e., desktops), include cursor styling
+     that will add a border on hover. This will override the
+     card default border style, which will give a tappable
+     affordance for smaller screens (i.e., phones and tablets). */
+  @include media-breakpoint-up(lg) {
+    border: 3px solid rgba(slateblue, 0);
+    transition-property: border-color;
+    transition-duration: .15s;
+    transition-timing-function: ease-out;
+    font-size: 1.3em;
+  }
+  margin-bottom: 10px;
+}
+
+.article:hover {
+  cursor: pointer;
+  @include media-breakpoint-up(lg) {
+    border-color: rgba(slateblue, 0.8);
+  }
+}
