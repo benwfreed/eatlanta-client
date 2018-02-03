@@ -1,0 +1,47 @@
+<div class="container">
+    <h2 class="text-center oswald">login</h2>
+    <form #loginForm="ngForm" (ngSubmit)="loginForm.valid && onSubmit()" novalidate>
+      <div class="row">
+        <div class="form-group col-md-6 offset-md-3" [class.has-warning]="username.invalid && username.dirty">
+          <label for="username"><strong>Username</strong></label>
+          <input type="text" class="form-control" id="username"
+                  #username="ngModel"
+                 [(ngModel)]="credentials.username" name="username"
+                 (focus)="onUsernameFocus($event)"
+                 required>
+          <alert type="warning" [hidden]="username.valid || (username.pristine && !loginForm.submitted)">
+              <span>Please enter a username</span>
+          </alert>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6 offset-md-3">
+          <label for="password"><strong>Password</strong></label>
+          <input type="password" class="form-control" id="password"
+                  #password="ngModel"
+                 [(ngModel)]="credentials.password" name="password"
+                 (focus)="onPasswordFocus($event)"
+                 required>
+         <alert type="warning" [hidden]="password.valid || (password.pristine && !loginForm.submitted)">
+             <span>Please enter a password</span>
+         </alert>
+        </div>
+      </div>
+      <div class="text-center">
+          <button type="submit" class="btn btn-primary text-center">Submit</button>
+          <br><br>
+          <div *ngIf="(loginErrorMessage$ | async) && (stillShowError$ | async) && !(loginInProgress$ | async)"
+               class="alert alert-danger">
+                  <strong>Whoops! </strong><span class="login-error-message">{{loginErrorMessage$ | async}}</span>
+          </div>
+          <div *ngIf="loginInProgress$ | async" class="alert alert-info">
+            <strong>Hang On</strong>&nbsp;<span class="in-progress">Login in Progress...</span>
+          </div>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+      </div>
+    </div>
+</div>
