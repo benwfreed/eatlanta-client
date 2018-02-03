@@ -1,0 +1,38 @@
+<div class="hello">
+<nav class="navbar fixed-top navbar-toggleable-md navbar-light bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" (click)="toggle()" type="button">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" routerLink="/">Eatlanta</a>
+
+  <div class="collapse navbar-collapse"
+      (collapsed)="collapsed($event)"
+      (expanded)="expanded($event)"
+      [collapse]="isCollapsed">
+    <span>
+    <ul class="navbar-nav">
+      <li class="nav-item active text-align:right">
+        <a class="nav-link" routerLink="/" (click)="toggle()">Contents <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about" (click)="toggle()">About</a>
+      </li>
+      <li class="nav-item" *ngIf="!(isLoggedIn$ | async)?.authorized">
+        <a class="nav-link" routerLink="/login" (click)="toggle()" id="login-link">Login</a>
+      </li>
+      <li class="nav-item" *ngIf="!(isLoggedIn$ | async)?.authorized">
+        <a class="nav-link" routerLink="/register" (click)="toggle()" id="register-link">Register</a>
+      </li>
+      <li class="nav-item" *ngIf="(isLoggedIn$ | async)?.authorized">
+        <a class="nav-link" routerLink="/visits" (click)="toggle()">Visits</a>
+      </li>
+      <li class="nav-item" *ngIf="(isLoggedIn$ | async)?.authorized">
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+    </span>
+  </div>
+</nav>
+</div>
+
+<div id="test">{{(isLoggedIn$ | async)?.authorized}}</div>
