@@ -1,0 +1,55 @@
+<div class="container">
+  <h2 class="text-center oswald">register</h2>
+  <form novalidate (ngSubmit)="onSubmit()">
+    <div class="form-group col-md-6 offset-md-3" [class.has-warning]="username.invalid && username.dirty">
+      <label for="username"><strong>Username</strong></label>
+      <input type="text" class="form-control" id="username" autocomplete="off"
+             #username="ngModel"
+             [(ngModel)]="credentials.username" name="username"
+             (keyup)="checkIfUsernameIsAvailable(credentials.username)"
+             required>
+      <alert type="warning" [hidden]="username.valid || username.pristine">
+        <span>Please enter a username</span>
+      </alert>
+      <alert type="success" [hidden]="!username.valid || !username || !(usernameAvailable$ | async)">
+        <span>Username is available</span>
+      </alert>
+      <alert type="warning" [hidden]="!username.valid || username.pristine
+        || (usernameAvailable$ | async) || ((usernameAvailable$ | async) === null)">
+        <span>Username is already taken</span>
+      </alert>
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <label for="password"><strong>Password</strong></label>
+      <input type="password" class="form-control" id="password"
+             #password="ngModel"
+             [(ngModel)]="credentials.password" name="password" required>
+      <alert type="warning" [hidden]="password.valid || password.pristine">
+        <span>Please enter a password</span>
+      </alert>
+    </div>
+    <div class="form-group col-md-6 offset-md-3">
+      <label for="password"><strong>Confirm Password</strong></label>
+      <input type="password" class="form-control" id="confirmpassword"
+             #confirmpassword="ngModel"
+             [(ngModel)]="confirmPassword" name="confirmpassword" required>
+      <alert type="warning" [hidden]="(credentials.password === confirmPassword)
+        || confirmpassword.pristine">
+        <span>Passwords don't match</span>
+      </alert>
+      <alert type="success" [hidden]="(credentials.password !== confirmPassword)
+        || confirmpassword.pristine || !credentials.password || !(usernameAvailable$ | async)">
+        <span>Passwords Match!</span>
+      </alert>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+  <br>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <p>Already have an account? <a routerLink="/login">Login here</a></p>
+    </div>
+  </div>
+</div>
