@@ -22,8 +22,6 @@ export class ArticleDataService {
     return this.http.get(this.REVIEWS_ENDPOINT, options)
       .map(extractData)
       .map(this.insertHtmlLineBreaks)
-      // .map( data => data.map( article => Object.assign({}, article, {content: article.content.replace(/\n\n/g, '<br><br>')})))
-      .do( data => { console.log(data); })
       .catch(handleError);
   }
 
