@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+.title {
+    text-align:center;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Bevan|Oswald|EB+Garamond');
+
+.bevan {
+  font-family: 'Bevan';
+}
+
+.oswald {
+  font-family: 'Oswald';
+}
+
+.ebgaramond {
+  font-family: 'EB Garamond';
+}

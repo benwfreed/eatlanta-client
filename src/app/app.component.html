@@ -1,3 +1,11 @@
-<h1>
-  {{title}}
-</h1>
+<main>
+    <div class="container">
+        <app-nav-bar>
+        </app-nav-bar>
+      <!--nav bar has position fixed and is 54px in height,
+          so we need to put a placeholder div that's in the
+          document flow beneath it.-->
+        <div style="height: 54px; margin-bottom: 15px;"></div>
+        <router-outlet></router-outlet>
+    </div>
+</main>
